@@ -1,5 +1,6 @@
 import discord
 import responses
+from datetime import datetime
 
 async def send_message(message, user_message, is_private):
     try:
@@ -28,7 +29,7 @@ def run_discord_bot(auth_token):
         user_message = str(message.content)
         channel = str(message.channel)
 
-        print(f'{username} said: "{user_message}" ({channel})')
+        log_bot(username, user_message, channel)
 
         if user_message[0] == '?':
             user_message = user_message[1:]
@@ -37,3 +38,14 @@ def run_discord_bot(auth_token):
             await send_message(message, user_message, is_private=False)
 
     client.run(auth_token)
+
+
+def log_bot(username, user_message, channel):
+    file = open('JaegerBot.log', 'a')
+
+    now = datetime.now()
+    date = now.strftime("%Y-%m-%d %H:%M:%S")
+
+    file.write(f'{date}: {username}> typed: "{user_message}" at #{channel}\n')
+
+    file.close()
