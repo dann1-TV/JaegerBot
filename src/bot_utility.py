@@ -1,6 +1,5 @@
 import random
 
-
 def roll():
     return str(random.randint(1, 6))
 
@@ -21,5 +20,16 @@ def randomize_case(string):
     return result
 
 def tip(arg):
-    
+
     return "a random tip from the tips array"
+
+def random_map():
+    number_of_maps = maps
+
+def load_maps():
+
+    with open('maps.txt', 'r') as file:
+        content = file.read()
+        maps = content.split("\n")
+
+    return maps
