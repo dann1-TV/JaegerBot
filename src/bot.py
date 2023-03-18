@@ -7,7 +7,7 @@ import tarkov
 # TODO: Use kwargs
 async def send_message(message, user_message, is_private, tarkov_data):
     try:
-        response = responses.get_response(user_message)
+        response = responses.get_response(user_message, tarkov_data)
         await message.author.send(response) if is_private else await message.channel.send(response)
 
     except Exception as e:
@@ -18,11 +18,11 @@ def run_discord_bot(auth_token):
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
-    
+
     tarkov_data = {}
     tarkov_data['maps'] = tarkov.load_maps
-    tarkov_data['tips'] = tarkov.load_tips 
-        
+    tarkov_data['tips'] = tarkov.load_tips
+
     @client.event
     async def on_ready():
         print(f'{client.user} is now running!')
