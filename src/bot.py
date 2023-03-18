@@ -19,9 +19,7 @@ def run_discord_bot(auth_token):
     intents.message_content = True
     client = discord.Client(intents=intents)
 
-    tarkov_data = {}
-    tarkov_data['maps'] = tarkov.load_maps
-    tarkov_data['tips'] = tarkov.load_tips
+    tarkov_data = tarkov.load_data()
 
     @client.event
     async def on_ready():

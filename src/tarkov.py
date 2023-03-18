@@ -6,17 +6,19 @@ def random_tip(tips):
 def random_map(maps):
     return random.choice(maps)
 
-def load_tips():
-    return load_conf("tips.txt")
+def load_data():
+    data = {}
+    data['maps'] = load_conf("maps.txt")
+    data['tips'] = load_conf("tips.txt")
 
-def load_maps():
-    return load_conf("maps.txt")
-    
+    return data
+
 # returns array of lines loaded from file
-def load_conf(conf_file_name):
-    
-    with open(conf_file_name, 'r') as file:
-        content = file.read()
-        content = content.split("\n")
+def load_conf(file_path):
+    lines = []
 
-    return content
+    with open(file_path, 'r') as file:
+        content = file.read()
+        lines = content.split("\n")
+
+    return lines

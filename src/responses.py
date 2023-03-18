@@ -14,14 +14,14 @@ def get_response(message: str, tarkov_data: dict) -> str:
     if p_message == 'coinflip' or p_message == 'coin':
         return bot_basic.coin()
 
+    if p_message == 'tip':
+        return tarkov.random_tip(tarkov_data['tips'])
+
     # TODO: Tag tips with PvP, PvE, money, hideout
     # TODO: Tip search
-    if p_message == 'tip':
-        return tarkov.random_tip(tarkov_data['maps'])
-    
     if p_message == 'map':
-        return tarkov.random_map(tarkov_data['tips'])
-    
+        return tarkov.random_map(tarkov_data['maps'])
+
     # EFT Money making playlist
     if p_message == 'money':
         return "https://www.youtube.com/playlist?list=PLhxeo6sgtUlo3_2d8salSzhAz6gZcvbYa"
@@ -37,7 +37,7 @@ def get_response(message: str, tarkov_data: dict) -> str:
 
 
 def help():
-    help_text = """
+    return  """
     Available commands:
     - `roll`                    prints 1-6 randomly
     - `coinflip/coin`           prints Heads or Tails
@@ -47,5 +47,3 @@ def help():
     - `money`                   How to make easy money
     - `about/source/code`       Developer information
     """
-
-    return help_text
