@@ -1,34 +1,51 @@
-import bot_utility
+import bot_basic
+import tarkov
+
+def get_response(message: str, tarkov_data: dict) -> str:
+    command = message.lower()[1:] # except the first char ? or !
+
+    # troll is the keyword and the rest of the maessage is trolled
+    if command[:5] == "troll":
+        return bot_basic.randomize_case(command[5:])
+
+    if command == 'roll' or command == 'dice':
+        return bot_basic.dice()
+
+    if command == 'coinflip' or command == 'coin':
+        return bot_basic.coin()
+
+    if command == 'tip':
+        return tarkov.random_tip(tarkov_data['tips'])
+
+    # TODO: Tag tips with PvP, PvE, money, hideout
+    # TODO: Tip search
+    if command == 'map':
+        return tarkov.random_map(tarkov_data['maps'])
+
+    # EFT Money making playlist
+    if command == 'money':
+        return "https://www.youtube.com/playlist?list=PLhxeo6sgtUlo3_2d8salSzhAz6gZcvbYa"
+
+    if command == 'about' or command == 'code' or command == 'source':
+        return "https://github.com/dann1-TV/JaegerBot"
 
 
-def get_response(message: str) -> str:
-    # except the first char ? or !
-    p_message = message.lower()[1:]
-
-    if p_message[:5] == "troll":
-        return bot_utility.randomize_case(p_message[5:])
-
-    if p_message == 'roll':
-        return bot_utility.roll()
-
-    if p_message == 'coinflip' or p_message == 'coin':
-        return bot_utility.coin_flip()
-
-    if p_message == 'tip':
-        return bot_utility
-
-    if p_message == 'help' or p_message == 'commands':
+    if command == 'help' or command == 'commands':
         return help()
 
     return help()
 
 
 def help():
-    help_text = """
+    return  """
     Available commands:
     - `roll`                    prints 1-6 randomly
     - `coinflip/coin`           prints Heads or Tails
     - `troll string_to_troll`   JUST loOk aT ThIs
-    """
+    - `tip`                     Jaeger will give you a tip to improve
+    - `map`                     prints a random map name
+    - `money`                   How to make easy money
+    - `about/source/code`       Developer information
 
-    return help_text
+    Prepend a `!`/`?` to the command for a **public**/**private** reply
+    """

@@ -1,18 +1,14 @@
 # JaegerBot
 
-A Tarkov Discord Bot
+A Discord Bot with generic utility and Tarkov knowledge
 
 ## Commands
 
-Available
 
 - `roll`                    prints 1-6 randomly
 - `coinflip/coin`           prints Heads or Tails
 - `troll string_to_troll`   JUST loOk aT ThIs
-
-Planned
-
-- `map`: Random map. Requires map archive
-- `tip`: Gives you a random tip. Requires tip archive
-- `money`: EFT money making playlist
-- `github/code`: show github repo with source code
+- `tip`                     Jaeger will give you a tip to improve
+- `map`                     prints a random map name
+- `money`                   How to make easy money
+- `about/source/code`       Developer information
